@@ -40,11 +40,15 @@ const onSignOut = function (event) {
 }
 
 const onGetLifts = function (event) {
-
+  event.preventDefault()
+  api.getLifts()
+    .then(ui.onGetLiftsSuccess)
+    .catch(ui.onGetLiftsFailure)
 }
 
 const onClearLifts = function (event) {
-
+  event.preventDefault()
+  ui.clearLifts()
 }
 
 const onDeleteLift = (event) => {
@@ -58,6 +62,10 @@ const onDeleteLift = (event) => {
 }
 
 const addHandlers = () => {
+  $('#sign-up').on('submit', onSignUp)
+  $('#sign-in').on('submit', onSignIn)
+  $('#change-password').on('submit', onChangePassword)
+  $('#sign-out').on('submit', onSignOut)
   $('#getLiftsButton').on('click', onGetLifts)
   $('#clearLiftsButton').on('click', onClearLifts)
   $('.content').on('click', '.remove-lift', onDeleteLift)
@@ -68,5 +76,7 @@ module.exports = {
   onSignIn,
   onChangePassword,
   onSignOut,
+  onGetLifts,
+  onDeleteLift,
   addHandlers
 }

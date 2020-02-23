@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('./../store')
+const showLiftsTemplate = require('../../templates/lift-listing.handlebars')
 
 const onSignUpSuccess = function (response) {
   $('#sign-in-message').text(response.user.email + ' Successfully signed up')
@@ -26,12 +27,8 @@ const onSignInSuccess = function (response) {
   $('#sign-in-message').addClass('success')
   $('.change-password').show()
   $('#sign-out').show()
-  $('#game-form').show()
-  $('.start').show()
-  $('.stats').show()
   $('#sign-in').hide()
   $('#sign-up').hide()
-  $('.bottom-section').show()
   setTimeout(function () {
     $('#sign-in-message').text('').removeClass('failure')
   }, 3000)
@@ -77,6 +74,15 @@ const onSignOutFailure = function (response) {
   $('#sign-in-message').text('Failed to sign out')
 }
 
+const onGetLiftsSuccess = function (response) {
+  console.log(response)
+  const showLiftsHtml = showLiftsTemplate({ lifts: data.lifts })
+  $('.content').html(showLiftsHtml)
+}
+const onClearLifts = function () {
+  $('.content').empty()
+}
+
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
@@ -85,5 +91,7 @@ module.exports = {
   onChangePasswordSuccess,
   onChangePasswordFailure,
   onSignOutSuccess,
-  onSignOutFailure
+  onSignOutFailure,
+  onGetLiftsSuccess,
+  onClearLifts
 }

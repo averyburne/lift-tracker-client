@@ -1,19 +1,19 @@
-{{#each books as |book|}}
-  {{log book}}
+{{#each lifts as |lift|}}
+  {{log lift}}
   <section data-id="{{lift.id}}">
     <h6>Lift:</h6>
     <h3>
       {{limit lift.type 15}}
     </h3>
-    <h6>Author:</h6>
+    <h6>User:</h6>
     <p>
-      {{#if book.author}}
-        {{book.author}}
+      {{#if lift.user_id}}
+        {{lift.user_id}}
       {{else}}
-        No author provided.
+        No user provided.
       {{/if}}
     </p>
-    {{> remove-book id=book.id}}
+    {{> remove-lift id=lift.id}}
   </section>
 
 {{/each}}
