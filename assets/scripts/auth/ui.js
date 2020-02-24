@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('./../store')
-const showLiftsTemplate = require('../../templates/lift-listing.handlebars')
+const showLiftsTemplate = require('../templates/lift-listing.handlebars')
 
 const onSignUpSuccess = function (response) {
   $('#sign-in-message').text(response.user.email + ' Successfully signed up')
@@ -74,8 +74,8 @@ const onSignOutFailure = function (response) {
   $('#sign-in-message').text('Failed to sign out')
 }
 
-const onGetLiftsSuccess = function (response) {
-  console.log(response)
+const onGetLiftsSuccess = function (data) {
+  console.log(data)
   const showLiftsHtml = showLiftsTemplate({ lifts: data.lifts })
   $('.content').html(showLiftsHtml)
 }
