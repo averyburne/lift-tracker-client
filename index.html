@@ -16,18 +16,33 @@
       <header class='main-header'>
         <button id="getLiftsButton">Get Lifts</button>
         <button id="clearLiftsButton">Clear Lifts</button>
-          <input id="single-lift-value" type="number" placeholder="id of lift you want">
-        <button id="get-single-lift">Get Lift</button>
       </header>
+      <form id='getLift'>
+        <legend>Get a Single Lift</legend>
+        <input id="single-lift-value" type="number" placeholder="id of lift you want">
+      <button id="get-single-lift">Get Lift</button>
+      </form>
       <form id="addLift">
-        <input type="text" placeholder="enter lift type" name="lift[exercise]">
+        <legend>Add a Lift</legend>
+        <select name="lift[exercise]">
+          <option value="Deadlift">Deadlift</option>
+          <option value="Squat">Squat</option>
+          <option value="Bench">Bench</option>
+          <option value="Leg Press">Leg Press</option>
+        </select>
         <input type="number" placeholder="enter the weight" name="lift[weight]">
         <input type="number" placeholder="enter the reps" name="lift[reps]">
         <input type="submit" value="Add lift">
       </form>
       <form id="updateLift">
+        <legend>Update a Lift</legend>
         <input type="number" placeholder="enter the lift id" name="lift[id]">
-        <input type="text" placeholder="enter lift type" name="lift[exercise]">
+        <select name="lift[exercise]">
+          <option value="Deadlift">Deadlift</option>
+          <option value="Squat">Squat</option>
+          <option value="Bench">Bench</option>
+          <option value="Leg Press">Leg Press</option>
+        </select>
         <input type="number" placeholder="enter the weight" name="lift[weight]">
         <input type="number" placeholder="enter the reps" name="lift[reps]">
         <input type="submit" value="Update lift">
@@ -48,14 +63,14 @@
         <input type="password" placeholder="password" name="credentials[password]">
         <input type="submit" value="Sign in">
       </form>
-        <form class='change-password'>
-        <h2 class='change-password-head'>Change Password</h2>
+      <form class='change-password'>
+        <legend>Change Password</legend>
         <input name="passwords[old]" type="password" placeholder="Old password">
         <input name="passwords[new]" type="password" placeholder="New password">
         <input type="submit" value="Change Password">
       </form>
-        <form id='sign-out'>
-        <h2 class='sign-out-head'>Sign Out</h2>
+      <form id='sign-out'>
+        <legend>Sign Out</legend>
         <input type="submit" value="Sign out">
       </form>
       <div class='content'></div>

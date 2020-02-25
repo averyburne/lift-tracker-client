@@ -29,6 +29,7 @@ const onSignInSuccess = function (response) {
   $('.change-password').show()
   $('#sign-out').show()
   $('.main-header').show()
+  $('#getLift').show()
   $('#addLift').show()
   $('#updateLift').show()
   $('#sign-in').hide()
@@ -62,6 +63,7 @@ const onSignOutSuccess = function (response) {
   $('.change-password').hide()
   $('#sign-out').hide()
   $('.main-header').hide()
+  $('#getLift').hide()
   $('#addLift').hide()
   $('#updateLift').hide()
   $('#sign-in').show()
@@ -75,6 +77,16 @@ const onSignOutSuccess = function (response) {
 
 const onSignOutFailure = function (response) {
   $('#sign-in-message').text('Failed to sign out')
+  setTimeout(() => {
+    $('#sign-in-message').text('').removeClass('success')
+  }, 3000)
+}
+
+const onGetLiftsFailure = function (data) {
+  $('#sign-in-message').text('Could not return Lifts')
+  setTimeout(() => {
+    $('#sign-in-message').text('').removeClass('success')
+  }, 5000)
 }
 
 const onGetLiftsSuccess = function (data) {
@@ -89,7 +101,10 @@ const onGetLiftSuccess = function (lift) {
 }
 
 const onGetLiftFailure = function (data) {
-  console.log('failure')
+  $('#sign-in-message').text('Could not get requested lift')
+  setTimeout(() => {
+    $('#sign-in-message').text('').removeClass('success')
+  }, 5000)
 }
 
 const onAddLiftSuccess = function (data) {
@@ -139,6 +154,7 @@ module.exports = {
   onSignOutSuccess,
   onSignOutFailure,
   onGetLiftsSuccess,
+  onGetLiftsFailure,
   onGetLiftSuccess,
   onGetLiftFailure,
   onAddLiftSuccess,
