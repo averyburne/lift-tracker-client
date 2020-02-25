@@ -1,0 +1,19 @@
+{{log lift}}
+<section data-id="{{lift.id}}" class="col-4 peen">
+  <h6>Lift:</h6>
+  <h3>
+    {{limit lift.exercise 15}}
+  </h3>
+  <h6>User:</h6>
+  <p>Lift ID: {{lift.id}}</p>
+  <p>Weight used: {{lift.weight}}</p>
+  <p>Total reps: {{lift.reps}}</p>
+  <p>
+    {{#if lift.user}}
+      {{lift.user.id}} {{lift.user.first_name}} {{lift.user.last_name}} {{lift.user.email}}
+    {{else}}
+      No user provided.
+    {{/if}}
+  </p>
+  {{> remove-lift id=lift.id}}
+</section>

@@ -1,1 +1,21 @@
 @import '~bootstrap/scss/bootstrap';
+
+form {
+  margin: 15px;
+}
+
+.content {
+  margin: 10px auto;
+  text-align: center;
+}
+
+div > section {
+  border: 1px solid black;
+  margin: 10px;
+  padding: 20px;
+}
+
+.peen {
+  display: inline-block;
+  border-radius: 15%;
+}

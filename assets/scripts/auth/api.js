@@ -49,30 +49,45 @@ const getLifts = function () {
   })
 }
 
+const getLift = function (num) {
+  return $.ajax({
+    url: config.apiUrl + '/lifts/' + num,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 const addLift = function (data) {
   return $.ajax({
     url: config.apiUrl + '/lifts',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
-    }
+    },
+    data: data
   })
 }
 
 const updateLift = function (data) {
   return $.ajax({
-    url: config.apiUrl + '/lifts/' + data.id,
+    url: config.apiUrl + '/lifts/' + data.lift.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
-    }
+    },
+    data: data
   })
 }
 
 const deleteLift = function (id) {
   return $.ajax({
-    url: config.apiUrl + '/books/' + id,
-    method: 'DELETE'
+    url: config.apiUrl + '/lifts/' + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
   })
 }
 
@@ -82,6 +97,7 @@ module.exports = {
   changePassword,
   signOut,
   getLifts,
+  getLift,
   addLift,
   updateLift,
   deleteLift

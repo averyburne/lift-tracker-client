@@ -11,4 +11,9 @@ const events = require('./auth/events.js')
 // On document ready
 $(() => {
   events.addHandlers()
+  $('.main-header').hide()
+  $('#addLift').hide()
+  $('#updateLift').hide()
+  $('.change-password').hide()
+  $('#sign-out').hide()
 })

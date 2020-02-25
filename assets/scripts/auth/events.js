@@ -46,9 +46,30 @@ const onGetLifts = function (event) {
     .catch(ui.onGetLiftsFailure)
 }
 
-const onClearLifts = function (event) {
+const onGetOneLift = function () {
   event.preventDefault()
-  ui.clearLifts()
+  const num = $('#single-lift-value').val()
+  api.getLift(num)
+    .then(ui.onGetLiftSuccess)
+    .catch(ui.onGetLiftFailure)
+}
+
+const onAddLift = function (event) {
+  event.preventDefault()
+  const form = event.target
+  const data = getFormFields(form)
+  api.addLift(data)
+    .then(ui.onAddLiftSuccess)
+    .catch(ui.onAddLiftFailure)
+}
+
+const onUpdateLift = function (event) {
+  event.preventDefault()
+  const form = event.target
+  const data = getFormFields(form)
+  api.updateLift(data)
+    .then(ui.onUpdateLiftSuccess)
+    .catch(ui.onUpdateLiftFailure)
 }
 
 const onDeleteLift = (event) => {
@@ -62,12 +83,15 @@ const onDeleteLift = (event) => {
 }
 
 const addHandlers = () => {
+  $('#addLift').on('submit', onAddLift)
+  $('#updateLift').on('submit', onUpdateLift)
+  $('#get-single-lift').on('click', onGetOneLift)
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
-  $('#change-password').on('submit', onChangePassword)
+  $('.change-password').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
   $('#getLiftsButton').on('click', onGetLifts)
-  $('#clearLiftsButton').on('click', onClearLifts)
+  $('#clearLiftsButton').on('click', ui.onClearLifts)
   $('.content').on('click', '.remove-lift', onDeleteLift)
 }
 
@@ -77,6 +101,8 @@ module.exports = {
   onChangePassword,
   onSignOut,
   onGetLifts,
+  onGetOneLift,
+  onUpdateLift,
   onDeleteLift,
   addHandlers
 }

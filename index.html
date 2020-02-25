@@ -16,18 +16,20 @@
       <header class='main-header'>
         <button id="getLiftsButton">Get Lifts</button>
         <button id="clearLiftsButton">Clear Lifts</button>
+          <input id="single-lift-value" type="number" placeholder="id of lift you want">
+        <button id="get-single-lift">Get Lift</button>
       </header>
       <form id="addLift">
-        <input type="text" placeholder="enter lift type" name="lifts[type]">
-        <input type="text" placeholder="enter the weight" name="lifts[weight]">
-        <input type="text" placeholder="enter the reps" name="lifts[reps]">
+        <input type="text" placeholder="enter lift type" name="lift[exercise]">
+        <input type="number" placeholder="enter the weight" name="lift[weight]">
+        <input type="number" placeholder="enter the reps" name="lift[reps]">
         <input type="submit" value="Add lift">
       </form>
       <form id="updateLift">
-        <input type="number" placeholder="enter the lift id" name="lifts[id]">
-        <input type="text" placeholder="enter lift type" name="lifts[type]">
-        <input type="text" placeholder="enter the weight" name="lifts[weight]">
-        <input type="text" placeholder="enter the reps" name="lifts[reps]">
+        <input type="number" placeholder="enter the lift id" name="lift[id]">
+        <input type="text" placeholder="enter lift type" name="lift[exercise]">
+        <input type="number" placeholder="enter the weight" name="lift[weight]">
+        <input type="number" placeholder="enter the reps" name="lift[reps]">
         <input type="submit" value="Update lift">
       </form>
       <p id="sign-in-message"></p>
