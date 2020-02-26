@@ -46,6 +46,13 @@ const onGetLifts = function (event) {
     .catch(ui.onGetLiftsFailure)
 }
 
+const onGetLifts2 = function (event) {
+  event.preventDefault()
+  api.getLifts()
+    .then(ui.onGetLiftsSuccess2)
+    .catch(ui.onGetLiftsFailure)
+}
+
 const onGetOneLift = function () {
   event.preventDefault()
   const num = $('#single-lift-value').val()
@@ -60,7 +67,9 @@ const onAddLift = function (event) {
   const data = getFormFields(form)
   api.addLift(data)
     .then(ui.onAddLiftSuccess)
-    .then(api.getLifts)
+    .then(function () {
+      onGetLifts2(event)
+    })
     .catch(ui.onAddLiftFailure)
 }
 
@@ -118,6 +127,7 @@ module.exports = {
   onChangePassword,
   onSignOut,
   onGetLifts,
+  onGetLifts2,
   onGetOneLift,
   onUpdateLift,
   onDeleteLift,

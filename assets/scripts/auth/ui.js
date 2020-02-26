@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('./../store')
+// const events = require('./events')
 const showLiftsTemplate = require('./../templates/lift-listing.handlebars')
 const showLiftTemplate = require('./../templates/single-lift-listing.handlebars')
 
@@ -46,6 +47,8 @@ const onSignInFailure = function (response) {
 }
 
 const onChangePasswordSuccess = function (response) {
+  $('#sign-in-message').removeClass('failure')
+  $('#sign-in-message').addClass('success')
   $('#sign-in-message').text('Successfully changed password')
   // $('#sign-up').trigger('reset')
   $('.change-password').trigger('reset')
@@ -55,10 +58,14 @@ const onChangePasswordSuccess = function (response) {
 }
 
 const onChangePasswordFailure = function (response) {
+  $('#sign-in-message').removeClass('success')
+  $('#sign-in-message').addClass('failure')
   $('#sign-in-message').text('Failed to change password')
 }
 
 const onSignOutSuccess = function (response) {
+  $('#sign-in-message').removeClass('failure')
+  $('#sign-in-message').addClass('success')
   $('#sign-in-message').text('Successfully signed out')
   $('.change-password').hide()
   $('#sign-out').hide()
@@ -76,13 +83,16 @@ const onSignOutSuccess = function (response) {
 }
 
 const onSignOutFailure = function (response) {
+  $('#sign-in-message').removeClass('success')
+  $('#sign-in-message').addClass('failure')
   $('#sign-in-message').text('Failed to sign out')
   setTimeout(() => {
-    $('#sign-in-message').text('').removeClass('success')
+    $('#sign-in-message').text('').removeClass('failure')
   }, 3000)
 }
 
 const onGetLiftsFailure = function (data) {
+  $('#sign-in-message').addClass('failure')
   $('#sign-in-message').text('Could not return Lifts')
   setTimeout(() => {
     $('#sign-in-message').text('').removeClass('success')
@@ -90,18 +100,42 @@ const onGetLiftsFailure = function (data) {
 }
 
 const onGetLiftsSuccess = function (data) {
+  $('#sign-in-message').removeClass('failure')
+  $('#sign-in-message').addClass('success')
   const showLiftsHtml = showLiftsTemplate({ lifts: data.lifts })
   $('.content').html(showLiftsHtml)
+  if (data.lifts.length === 0) {
+    $('#sign-in-message').addClass('failure')
+    $('#sign-in-message').text("You don't have any!")
+  } else {
+    $('#sign-in-message').text('Got them, check below')
+  }
+}
+
+const onGetLiftsSuccess2 = function (data) {
+  $('#sign-in-message').removeClass('failure')
+  $('#sign-in-message').addClass('success')
+  const showLiftsHtml = showLiftsTemplate({ lifts: data.lifts })
+  $('.content').html(showLiftsHtml)
+  if (data.lifts.length === 0) {
+    $('#sign-in-message').addClass('failure')
+    $('#sign-in-message').text("You don't have any!")
+  } else {
+    $('#sign-in-message').text('Successfully added lift')
+  }
 }
 
 const onGetLiftSuccess = function (lift) {
-  console.log(lift)
+  $('#sign-in-message').removeClass('failure')
+  $('#sign-in-message').addClass('success')
+  $('#sign-in-message').text('Got it, check below')
   const showLiftHtml = showLiftTemplate(lift)
   $('.content').html(showLiftHtml)
   $('#getLift').trigger('reset')
 }
 
 const onGetLiftFailure = function (data) {
+  $('#sign-in-message').addClass('failure')
   $('#sign-in-message').text('Could not get requested lift')
   setTimeout(() => {
     $('#sign-in-message').text('').removeClass('success')
@@ -109,7 +143,8 @@ const onGetLiftFailure = function (data) {
 }
 
 const onAddLiftSuccess = function (data) {
-  console.log(data)
+  $('#sign-in-message').removeClass('failure')
+  $('#sign-in-message').addClass('success')
   $('#sign-in-message').text('Successfully added lift')
   setTimeout(() => {
     $('#sign-in-message').text('').removeClass('success')
@@ -118,6 +153,8 @@ const onAddLiftSuccess = function (data) {
 }
 
 const onAddLiftFailure = function (data) {
+  $('#sign-in-message').removeClass('success')
+  $('#sign-in-message').addClass('failure')
   $('#sign-in-message').text('Could not add lift')
   setTimeout(() => {
     $('#sign-in-message').text('').removeClass('success')
@@ -126,7 +163,8 @@ const onAddLiftFailure = function (data) {
 }
 
 const onUpdateLiftSuccess = function (data) {
-  console.log('success')
+  $('#sign-in-message').removeClass('failure')
+  $('#sign-in-message').addClass('success')
   $('#sign-in-message').text('Successfully updated lift')
   setTimeout(() => {
     $('#sign-in-message').text('').removeClass('success')
@@ -135,6 +173,7 @@ const onUpdateLiftSuccess = function (data) {
 }
 
 const onUpdateLiftFailure = function (data) {
+  $('#sign-in-message').addClass('failure')
   $('#sign-in-message').text('Could not update lift')
   setTimeout(() => {
     $('#sign-in-message').text('').removeClass('success')
@@ -142,6 +181,9 @@ const onUpdateLiftFailure = function (data) {
   console.log('failure')
 }
 const onClearLifts = function () {
+  $('#sign-in-message').removeClass('failure')
+  $('#sign-in-message').addClass('success')
+  $('#sign-in-message').text("They're gone!")
   $('.content').empty()
 }
 
@@ -156,7 +198,11 @@ const onGetAverageWeightSuccess = function (data) {
     }
   }
   const average = (sum / count).toFixed(2)
-  $('#averageWeightDisplay').text(average)
+  if (isNaN(average)) {
+    $('#averageWeightDisplay').text("You haven't done any")
+  } else {
+    $('#averageWeightDisplay').text(average + ' lbs.')
+  }
 }
 
 const onGetAverageWeightFailure = function (data) {
@@ -174,7 +220,11 @@ const onGetAverageRepsSuccess = function (data) {
     }
   }
   const average = (sum / count).toFixed(2)
-  $('#averageRepsDisplay').text(average)
+  if (isNaN(average)) {
+    $('#averageRepsDisplay').text("You haven't done any")
+  } else {
+    $('#averageRepsDisplay').text(average)
+  }
 }
 
 const onGetAverageRepsFailure = function (data) {
@@ -191,6 +241,7 @@ module.exports = {
   onSignOutSuccess,
   onSignOutFailure,
   onGetLiftsSuccess,
+  onGetLiftsSuccess2,
   onGetLiftsFailure,
   onGetLiftSuccess,
   onGetLiftFailure,
