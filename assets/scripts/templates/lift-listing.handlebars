@@ -1,17 +1,17 @@
 
 {{#each lifts as |lift|}}
   {{log lift}}
-  <section data-id="{{lift.id}}" class="col-3 peen">
+  <section data-id="{{lift.id}}" class="col-3 lift-item">
     <h6>Lift:</h6>
-    <h3>
+    <h3 class="lift-heading">
       {{limit lift.exercise 15}}
     </h3>
     <p>Lift ID: {{lift.id}}</p>
-    <p>Weight used: {{lift.weight}}</p>
-    <p>Total reps: {{lift.reps}}</p>
+    <p><b>Weight:</b> {{lift.weight}}</p>
+    <p><b>Reps:</b> {{lift.reps}}</p>
     <p>
       {{#if lift.user}}
-        User: {{lift.user.first_name}} {{lift.user.last_name}}
+        <b>User:</b> {{lift.user.first_name}} {{lift.user.last_name}}
       {{else}}
         No user provided.
       {{/if}}

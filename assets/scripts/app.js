@@ -13,7 +13,7 @@ $(() => {
   events.addHandlers()
   $('.main-header').hide()
   $('#getLift').hide()
-  $('#addLift').hide()
+  $('.row').hide()
   $('#updateLift').hide()
   $('.change-password').hide()
   $('#sign-out').hide()

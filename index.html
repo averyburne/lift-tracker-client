@@ -14,14 +14,33 @@
     <body>
       <h1>Lift Tracker</h1>
       <header class='main-header'>
-        <button id="getLiftsButton">Get Lifts</button>
-        <button id="clearLiftsButton">Clear Lifts</button>
+        <h6>Show Your Lifts</h6>
+        <button id="getLiftsButton" class="btn-primary">Get Lifts</button>
+        <button id="clearLiftsButton" class="btn-default">Clear Lifts</button>
       </header>
       <form id='getLift'>
         <legend>Get a Single Lift</legend>
         <input id="single-lift-value" type="number" placeholder="id of lift you want">
-      <button id="get-single-lift">Get Lift</button>
+      <button id="get-single-lift" class="btn-primary">Get Lift</button>
       </form>
+      <p id="sign-in-message"></p>
+      <form id='sign-up'>
+        <h2 class='sign-up-head'>Sign Up!</h2>
+        <input type="email" placeholder="john@example.com" name="credentials[email]">
+        <input type="password" placeholder="password" name="credentials[password]">
+        <input type="password" placeholder="password confirmation" name="credentials[password_confirmation]">
+        <input type="text" placeholder="First name" name="credentials[first_name]">
+        <input type="text" placeholder="Last name" name="credentials[last_name]">
+        <input type="submit" value="Sign up" class="btn-primary">
+      </form>
+      <form id='sign-in'>
+        <h2 class='sign-in-head'>Sign In!</h2>
+        <input type="email" placeholder="john@example.com" name="credentials[email]">
+        <input type="password" placeholder="password" name="credentials[password]">
+        <input type="submit" value="Sign in" class="btn-primary">
+      </form>
+  <div class="row">
+    <div class="col-3 main-col">
       <form id="addLift">
         <legend>Add a Lift</legend>
         <select name="lift[exercise]">
@@ -32,12 +51,38 @@
         </select>
         <input type="number" placeholder="enter the weight" name="lift[weight]">
         <input type="number" placeholder="enter the reps" name="lift[reps]">
-        <input type="submit" value="Add lift">
+        <input type="submit" value="Add lift" class="btn btn-primary">
       </form>
+      <div class="stats">
+        <h6>Stats</h6>
+        <div class="weight-stats">
+          <button id="getAverageWeight" class="btn-info">Get Average Weight</button>
+          <select id="averageExercise">
+            <option value="Deadlift">Deadlift</option>
+            <option value="Squat">Squat</option>
+            <option value="Bench">Bench</option>
+            <option value="Leg Press">Leg Press</option>
+          </select>
+          <span id="averageWeightDisplay"></span>
+        </div>
+        <div class="reps-stats">
+          <button id="getAverageReps" class="btn-info">Get Average Reps</button>
+          <select id="averageReps">
+            <option value="Deadlift">Deadlift</option>
+            <option value="Squat">Squat</option>
+            <option value="Bench">Bench</option>
+            <option value="Leg Press">Leg Press</option>
+          </select>
+          <span id="averageRepsDisplay"></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-3 main-col">
       <form id="updateLift">
         <legend>Update a Lift</legend>
         <input type="number" placeholder="enter the lift id" name="lift[id]">
-        <select name="lift[exercise]">
+        <select name="lift[exercise]" class="dropwdown-menu">
           <option value="Deadlift">Deadlift</option>
           <option value="Squat">Squat</option>
           <option value="Bench">Bench</option>
@@ -45,34 +90,23 @@
         </select>
         <input type="number" placeholder="enter the weight" name="lift[weight]">
         <input type="number" placeholder="enter the reps" name="lift[reps]">
-        <input type="submit" value="Update lift">
+        <input type="submit" value="Update lift" class="btn-warning">
       </form>
-      <p id="sign-in-message"></p>
-      <form id='sign-up'>
-        <h2 class='sign-up-head'>Sign Up!</h2>
-        <input type="email" placeholder="john@example.com" name="credentials[email]">
-        <input type="password" placeholder="password" name="credentials[password]">
-        <input type="password" placeholder="password confirmation" name="credentials[password_confirmation]">
-        <input type="text" placeholder="First name" name="credentials[first_name]">
-        <input type="text" placeholder="Last name" name="credentials[last_name]">
-        <input type="submit" value="Sign up">
-      </form>
-      <form id='sign-in'>
-        <h2 class='sign-in-head'>Sign In!</h2>
-        <input type="email" placeholder="john@example.com" name="credentials[email]">
-        <input type="password" placeholder="password" name="credentials[password]">
-        <input type="submit" value="Sign in">
-      </form>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-3 main-col">
       <form class='change-password'>
         <legend>Change Password</legend>
         <input name="passwords[old]" type="password" placeholder="Old password">
         <input name="passwords[new]" type="password" placeholder="New password">
-        <input type="submit" value="Change Password">
+        <input type="submit" value="Change Password" class="btn-danger">
       </form>
       <form id='sign-out'>
         <legend>Sign Out</legend>
-        <input type="submit" value="Sign out">
+        <input type="submit" value="Sign out" class="btn-warning">
       </form>
+    </div>
+  </div>
       <div class='content'></div>
     </body>
 </html>

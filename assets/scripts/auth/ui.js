@@ -30,7 +30,7 @@ const onSignInSuccess = function (response) {
   $('#sign-out').show()
   $('.main-header').show()
   $('#getLift').show()
-  $('#addLift').show()
+  $('.row').show()
   $('#updateLift').show()
   $('#sign-in').hide()
   $('#sign-up').hide()
@@ -64,7 +64,7 @@ const onSignOutSuccess = function (response) {
   $('#sign-out').hide()
   $('.main-header').hide()
   $('#getLift').hide()
-  $('#addLift').hide()
+  $('.row').hide()
   $('#updateLift').hide()
   $('#sign-in').show()
   $('#sign-up').show()
@@ -98,6 +98,7 @@ const onGetLiftSuccess = function (lift) {
   console.log(lift)
   const showLiftHtml = showLiftTemplate(lift)
   $('.content').html(showLiftHtml)
+  $('#getLift').trigger('reset')
 }
 
 const onGetLiftFailure = function (data) {
@@ -144,6 +145,42 @@ const onClearLifts = function () {
   $('.content').empty()
 }
 
+const onGetAverageWeightSuccess = function (data) {
+  const lifts = data.lifts
+  let sum = 0
+  let count = 0
+  for (let i = 0; i < lifts.length; i++) {
+    if (lifts[i].exercise === $('#averageExercise').val()) {
+      sum += lifts[i].weight
+      count++
+    }
+  }
+  const average = (sum / count).toFixed(2)
+  $('#averageWeightDisplay').text(average)
+}
+
+const onGetAverageWeightFailure = function (data) {
+  $('.sign-in-message').text('Could not return average weight')
+}
+
+const onGetAverageRepsSuccess = function (data) {
+  const lifts = data.lifts
+  let sum = 0
+  let count = 0
+  for (let i = 0; i < lifts.length; i++) {
+    if (lifts[i].exercise === $('#averageReps').val()) {
+      sum += lifts[i].reps
+      count++
+    }
+  }
+  const average = (sum / count).toFixed(2)
+  $('#averageRepsDisplay').text(average)
+}
+
+const onGetAverageRepsFailure = function (data) {
+  $('.sign-in-message').text('Could not return average reps')
+}
+
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
@@ -161,5 +198,9 @@ module.exports = {
   onAddLiftFailure,
   onUpdateLiftSuccess,
   onUpdateLiftFailure,
+  onGetAverageWeightSuccess,
+  onGetAverageWeightFailure,
+  onGetAverageRepsSuccess,
+  onGetAverageRepsFailure,
   onClearLifts
 }

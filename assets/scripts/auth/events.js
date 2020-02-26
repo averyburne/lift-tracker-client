@@ -60,6 +60,7 @@ const onAddLift = function (event) {
   const data = getFormFields(form)
   api.addLift(data)
     .then(ui.onAddLiftSuccess)
+    .then(api.getLifts)
     .catch(ui.onAddLiftFailure)
 }
 
@@ -82,6 +83,20 @@ const onDeleteLift = (event) => {
     .catch(ui.failure)
 }
 
+const onGetAverageWeight = (event) => {
+  event.preventDefault()
+  api.getLifts()
+    .then(ui.onGetAverageWeightSuccess)
+    .catch(ui.onGetAverageWeightFailure)
+}
+
+const onGetAverageReps = (event) => {
+  event.preventDefault()
+  api.getLifts()
+    .then(ui.onGetAverageRepsSuccess)
+    .catch(ui.onGetAverageRepsFailure)
+}
+
 const addHandlers = () => {
   $('#addLift').on('submit', onAddLift)
   $('#updateLift').on('submit', onUpdateLift)
@@ -92,6 +107,8 @@ const addHandlers = () => {
   $('#sign-out').on('submit', onSignOut)
   $('#getLiftsButton').on('click', onGetLifts)
   $('#clearLiftsButton').on('click', ui.onClearLifts)
+  $('#getAverageWeight').on('click', onGetAverageWeight)
+  $('#getAverageReps').on('click', onGetAverageReps)
   $('.content').on('click', '.remove-lift', onDeleteLift)
 }
 
@@ -104,5 +121,7 @@ module.exports = {
   onGetOneLift,
   onUpdateLift,
   onDeleteLift,
+  onGetAverageWeight,
+  onGetAverageReps,
   addHandlers
 }
