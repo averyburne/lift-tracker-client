@@ -12,6 +12,7 @@
 ## Planning
 
 ### User Stories
+
   * As a user, I would like to be able to sign up for this application
   * As a user, I would like to be able to sign in and stay signed in
   * As a user, I would like to be able to change my password whenever I feel I need to
@@ -21,6 +22,10 @@
   * As a user, I would like to have a dropdown menu of the types of lifts I can do, as opposed to typing it out every time
   * As a user, I want to have multiple exercises attributed to me
   * As a user, I want to make sure lifts are only attributed to one person
+
+### Wireframes
+
+[wireframes](https://imgur.com/gallery/LPm8zZ8)
 
 ### Client Setup
 
