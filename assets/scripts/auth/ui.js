@@ -159,7 +159,6 @@ const onAddLiftFailure = function (data) {
   setTimeout(() => {
     $('#sign-in-message').text('').removeClass('success')
   }, 3000)
-  console.log(data)
 }
 
 const onUpdateLiftSuccess = function (data) {
@@ -178,7 +177,6 @@ const onUpdateLiftFailure = function (data) {
   setTimeout(() => {
     $('#sign-in-message').text('').removeClass('success')
   }, 3000)
-  console.log('failure')
 }
 const onClearLifts = function () {
   $('#sign-in-message').removeClass('failure')
