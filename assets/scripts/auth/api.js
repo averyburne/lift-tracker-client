@@ -59,6 +59,16 @@ const getLift = function (num) {
   })
 }
 
+const getAverage = function (lift) {
+  return $.ajax({
+    url: config.apiUrl + '/get-average',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 const addLift = function (data) {
   return $.ajax({
     url: config.apiUrl + '/lifts',
@@ -98,6 +108,7 @@ module.exports = {
   signOut,
   getLifts,
   getLift,
+  getAverage,
   addLift,
   updateLift,
   deleteLift
