@@ -104,13 +104,12 @@ div > section {
 
 .row {
   display: table;
-  margin: 0 50px;
+  margin: 10px 20px;
 }
 
 .main-col {
   border: 1px solid black;
   margin: 15px;;
-  float: none;
   display: table-cell;
   vertical-align: top;
 }
