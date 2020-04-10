@@ -1,6 +1,7 @@
 const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('./../../../lib/get-form-fields')
+const store = require('./../store')
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -73,12 +74,18 @@ const onAddLift = function (event) {
     .catch(ui.onAddLiftFailure)
 }
 
+const storeLiftId = function (event) {
+  event.preventDefault()
+  store.id = $(event.target).data('id')
+}
+
 const onUpdateLift = function (event) {
   event.preventDefault()
   const form = event.target
   const data = getFormFields(form)
   api.updateLift(data)
     .then(ui.onUpdateLiftSuccess)
+    .then(onGetLifts(event))
     .catch(ui.onUpdateLiftFailure)
 }
 
@@ -108,6 +115,7 @@ const onGetAverageReps = (event) => {
 
 const addHandlers = () => {
   $('#addLift').on('submit', onAddLift)
+  $('.content').on('click', '.updateBtn-listItem', storeLiftId)
   $('#updateLift').on('submit', onUpdateLift)
   $('#get-single-lift').on('click', onGetOneLift)
   $('#sign-up').on('submit', onSignUp)
