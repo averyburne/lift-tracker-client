@@ -81,7 +81,6 @@ const addLift = function (data) {
 }
 
 const updateLift = function (data) {
-  console.log(data)
   return $.ajax({
     url: config.apiUrl + '/lifts/' + store.id,
     method: 'PATCH',
